@@ -7,4 +7,5 @@ dotnet build "NETStandard2.0/Afx.Data.Entity/Afx.Data.Entity.csproj" -c Release
 cd publish
 del /q/s *.pdb
 del /q/s EntityFramework*
+del /q/s Afx.Data.Entity.dll.config
 pause
