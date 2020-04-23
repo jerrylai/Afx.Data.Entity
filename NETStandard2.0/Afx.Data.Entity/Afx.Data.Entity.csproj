@@ -1,0 +1,73 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Afx.Data.Entity for .NET Standard 2.0</Description>
+    <PackageReleaseNotes>Afx.Data.Entity for .NET Standard 2.0</PackageReleaseNotes>
+    <Product>Afx.Data.Entity for .NET Standard 2.0</Product>
+    <Version>9.31.3</Version>
+    <Authors>jerrylai@aliyun.com</Authors>
+    <Company>mycsv.cn</Company>
+    <Copyright>Copyright © mycsv 2018</Copyright>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\publish\</OutputPath>
+    <DocumentationFile>..\..\publish\netstandard2.0\Afx.Data.Entity.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\Afx.Data.Entity\DecimalAttribute.cs" Link="Attribute\DecimalAttribute.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\EntityContext.cs" Link="EntityContext.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\IndexAttribute.cs" Link="Attribute\IndexAttribute.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\NonClusteredAttribute.cs" Link="Attribute\NonClusteredAttribute.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\BuildDatabase.cs" Link="Schema\BuildDatabase.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\BuildModel.cs" Link="Schema\BuildModel.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\ColumnInfoModel.cs" Link="Schema\ColumnInfoModel.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\DatabaseSchema.cs" Link="Schema\DatabaseSchema.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\DataTypeModel.cs" Link="Schema\DataTypeModel.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\DbContextSchema.cs" Link="Schema\DbContextSchema.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IBuildDatabase.cs" Link="Schema\interface\IBuildDatabase.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IBuildModel.cs" Link="Schema\interface\IBuildModel.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IDatabaseSchema.cs" Link="Schema\interface\IDatabaseSchema.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IDbContextSchema.cs" Link="Schema\interface\IDbContextSchema.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IModelSchema.cs" Link="Schema\interface\IModelSchema.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\ITableSchema.cs" Link="Schema\interface\ITableSchema.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\ModelSchema.cs" Link="Schema\ModelSchema.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\TableInfoModel.cs" Link="Schema\TableInfoModel.cs" />
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\TableSchema.cs" Link="Schema\TableSchema.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Schema\interface\" />
+    <Folder Include="template\" />
+    <Folder Include="Attribute\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Afx.Data.Entity\template\DbContext.tmpl" Link="template\DbContext.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\DbContextCore.tmpl" Link="template\DbContextCore.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\DbContextProperty.tmpl" Link="template\DbContextProperty.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\Model.tmpl" Link="template\Model.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\ModelAttribute.tmpl" Link="template\ModelAttribute.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\ModelProperty.tmpl" Link="template\ModelProperty.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.3" />
+  </ItemGroup>
+</Project>

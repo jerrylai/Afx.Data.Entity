@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{683DC5E2-8227-43E6-AE65-3ED242CF885C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Afx.Data.Entity</RootNamespace>
+    <AssemblyName>Afx.Data.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\publish\net45\</OutputPath>
+    <DefineConstants>TRACE;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\publish\net45\Afx.Data.Entity.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\Afx.Data.Entity\NonClusteredAttribute.cs">
+      <Link>Attribute\NonClusteredAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\TableInfoModel.cs">
+      <Link>Schema\TableInfoModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Assembly.cs">
+      <Link>Properties\Assembly.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\DecimalAttribute.cs">
+      <Link>Attribute\DecimalAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\EntityContext.cs">
+      <Link>EntityContext.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\BuildDatabase.cs">
+      <Link>Schema\BuildDatabase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\BuildModel.cs">
+      <Link>Schema\BuildModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\ColumnInfoModel.cs">
+      <Link>Schema\ColumnInfoModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\DatabaseSchema.cs">
+      <Link>Schema\DatabaseSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\DataTypeModel.cs">
+      <Link>Schema\DataTypeModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\DbContextSchema.cs">
+      <Link>Schema\DbContextSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IBuildDatabase.cs">
+      <Link>Schema\interface\IBuildDatabase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IBuildModel.cs">
+      <Link>Schema\interface\IBuildModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IDatabaseSchema.cs">
+      <Link>Schema\interface\IDatabaseSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IDbContextSchema.cs">
+      <Link>Schema\interface\IDbContextSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\IModelSchema.cs">
+      <Link>Schema\interface\IModelSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\interface\ITableSchema.cs">
+      <Link>Schema\interface\ITableSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\ModelSchema.cs">
+      <Link>Schema\ModelSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Afx.Data.Entity\Schema\TableSchema.cs">
+      <Link>Schema\TableSchema.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Afx.Data.Entity\template\DbContext.tmpl">
+      <Link>template\DbContext.tmpl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\DbContextProperty.tmpl">
+      <Link>template\DbContextProperty.tmpl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\Model.tmpl">
+      <Link>template\Model.tmpl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\ModelAttribute.tmpl">
+      <Link>template\ModelAttribute.tmpl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\Afx.Data.Entity\template\ModelProperty.tmpl">
+      <Link>template\ModelProperty.tmpl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+</Project>
