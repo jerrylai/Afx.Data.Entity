@@ -4,6 +4,7 @@ using System.Text;
 
 namespace System.ComponentModel.DataAnnotations
 {
+#if !NET_STANDARD_2_1
     /// <summary>
     /// 索引 Attribute
     /// </summary>
@@ -19,32 +20,33 @@ namespace System.ComponentModel.DataAnnotations
         /// </summary>
         public bool IsUnique { get; private set; }
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public IndexAttribute() : this(null, false)
-        {
+        ///// <summary>
+        ///// 构造函数
+        ///// </summary>
+        //public IndexAttribute() : this(null, false)
+        //{
 
-        }
+        //}
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="name">索引名称</param>
-        public IndexAttribute(string name) : this(name, false)
-        {
+        ///// <summary>
+        ///// 构造函数
+        ///// </summary>
+        ///// <param name="name">索引名称</param>
+        //public IndexAttribute(string name) : this(name, false)
+        //{
 
-        }
+        //}
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="name">索引名称</param>
-        /// <param name="isUnique">是否唯一索引</param>
-        public IndexAttribute(string name, bool isUnique)
-        {
-            this.Name = name;
-            this.IsUnique = isUnique;
-        }
+        ///// <summary>
+        ///// 构造函数
+        ///// </summary>
+        ///// <param name="name">索引名称</param>
+        ///// <param name="isUnique">是否唯一索引</param>
+        //public IndexAttribute(string name, bool isUnique)
+        //{
+        //    this.Name = name;
+        //    this.IsUnique = isUnique;
+        //}
     }
+#endif
 }

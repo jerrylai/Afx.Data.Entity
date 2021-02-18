@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Afx.Data.Entity for .NET Standard 2.0</Description>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Description>Afx.Data.Entity for .NET Standard 2.1</Description>
     <PackageReleaseNotes>Afx.Data.Entity for .NET Standard 2.0</PackageReleaseNotes>
-    <Product>Afx.Data.Entity for .NET Standard 2.0</Product>
+    <Product>Afx.Data.Entity for .NET Standard 2.1</Product>
     <Version>13.2.0</Version>
     <Authors>jerrylai@aliyun.com</Authors>
     <Company>mycsv.cn</Company>
@@ -14,11 +14,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\publish\</OutputPath>
     <DocumentationFile>..\..\publish\netstandard2.0\Afx.Data.Entity.xml</DocumentationFile>
+    <DefineConstants>TRACE;NET_STANDARD_2_1</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>
     </DocumentationFile>
+    <DefineConstants>TRACE;NET_STANDARD_2_1</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\src\Afx.Data.Entity\DecimalAttribute.cs" Link="Attribute\DecimalAttribute.cs" />
@@ -67,7 +69,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.3" />
   </ItemGroup>
 </Project>
