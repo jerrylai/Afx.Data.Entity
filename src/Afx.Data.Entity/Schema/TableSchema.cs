@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 #if NETCOREAPP || NETSTANDARD
 using Microsoft.EntityFrameworkCore;
+using IndexAttribute = System.ComponentModel.DataAnnotations.IndexAttribute;
 #else
 using System.Data.Entity;
 #endif
