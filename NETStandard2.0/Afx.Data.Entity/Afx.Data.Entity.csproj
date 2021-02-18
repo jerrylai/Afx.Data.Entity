@@ -4,7 +4,7 @@
     <Description>Afx.Data.Entity for .NET Standard 2.0</Description>
     <PackageReleaseNotes>Afx.Data.Entity for .NET Standard 2.0</PackageReleaseNotes>
     <Product>Afx.Data.Entity for .NET Standard 2.0</Product>
-    <Version>13.2.0</Version>
+    <Version>13.2.1</Version>
     <Authors>jerrylai@aliyun.com</Authors>
     <Company>mycsv.cn</Company>
     <Copyright>Copyright © mycsv 2018</Copyright>
@@ -67,7 +67,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.12" />
   </ItemGroup>
 </Project>
