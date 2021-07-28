@@ -12,10 +12,10 @@
     <tags>EF EntityFramework EntityFrameworkCore</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.0">
-        <dependency id="EntityFramework" version="6.4.0" />
+        <dependency id="EntityFramework" version="6.4.4" />
       </group>
       <group targetFramework=".NETFramework4.5">
-        <dependency id="EntityFramework" version="6.4.0" />
+        <dependency id="EntityFramework" version="6.4.4" />
       </group>
       <group targetFramework=".NETStandard2.0">
         <dependency id="Microsoft.EntityFrameworkCore" version="3.1.17" />
