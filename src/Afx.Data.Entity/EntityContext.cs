@@ -5,8 +5,10 @@ using System.Linq;
 using System.Data;
 using System.Text;
 using System.Data.Common;
-using System.Threading.Tasks;
 using System.Threading;
+#if !NET40
+using System.Threading.Tasks;
+#endif
 #if NETCOREAPP || NETSTANDARD
 using Microsoft.EntityFrameworkCore;
 #else
@@ -184,15 +186,70 @@ namespace Afx.Data.Entity
             return this.Database.ExecuteSqlCommand(sql, parameters.ToArray());
         }
 #endif
-        private List<Action<EntityContext, int>> commitCallbackList = new List<Action<EntityContext, int>>(5);
+        private List<Action<EntityContext, int>> commitCallbackList;
         /// <summary>
         ///  commit or SaveChanges 成功之后执行action list
         /// </summary>
-        public List<Action<EntityContext, int>> CommitCallbackList => this.commitCallbackList;
+        public List<Action<EntityContext, int>> CommitCallbackList => this.commitCallbackList ?? new List<Action<EntityContext, int>>(0);
         /// <summary>
-        /// CommitCallback throw Exception Action
+        /// 
         /// </summary>
         public Action<Exception> CommitCallbackError;
+#if !NET40
+        /// <summary>
+        /// 
+        /// </summary>
+        private List<Func<EntityContext, int, Task>> commitCallbackAsyncList;
+        /// <summary>
+        ///  commit or SaveChanges 成功之后执行action list
+        /// </summary>
+        public List<Func<EntityContext, int, Task>> CommitCallbackAsyncList => this.commitCallbackAsyncList ?? new List<Func<EntityContext, int, Task>>(0);
+        /// <summary>
+        /// 添加 commit or SaveChanges 成功之后执行action
+        /// action 只执行一次
+        /// </summary>
+        /// <param name="action">需要执行的action</param>
+        public virtual void AddCommitCallback(Func<EntityContext, int, Task> action)
+        {
+            if (action == null) throw new ArgumentNullException("action");
+            if (this.commitCallbackAsyncList == null) this.commitCallbackAsyncList = new List<Func<EntityContext, int, Task>>(5);
+            if (!this.commitCallbackAsyncList.Contains(action))
+            {
+                this.commitCallbackAsyncList.Add(action);
+            }
+        }
+
+        /// <summary>
+        /// 移除commit or SaveChanges 成功之后执行action
+        /// </summary>
+        /// <param name="action">需要执行的action</param>
+        /// <returns>移除成功返回true</returns>
+        public virtual bool RemoveCommitCallback(Func<EntityContext, int, Task> action)
+        {
+            bool result = false;
+            if (action == null) throw new ArgumentNullException("action");
+            if (this.commitCallbackAsyncList == null) return true;
+            result = this.commitCallbackAsyncList.Remove(action);
+
+            return result;
+        }
+
+        private async Task OnCommitCallbackAsync()
+        {
+            if (this.commitCallbackAsyncList != null)
+            {
+                foreach (var action in this.commitCallbackAsyncList)
+                {
+                    try { await action(this, this.saveChangeCount); }
+                    catch (Exception ex)
+                    {
+                        CommitCallbackError?.Invoke(ex);
+                    }
+                }
+                this.commitCallbackAsyncList.Clear();
+            }
+        }
+#endif
         /// <summary>
         /// 添加 commit or SaveChanges 成功之后执行action
         /// action 只执行一次
@@ -201,13 +258,13 @@ namespace Afx.Data.Entity
         public virtual void AddCommitCallback(Action<EntityContext, int> action)
         {
             if (action == null) throw new ArgumentNullException("action");
-
-            if (!this.CommitCallbackList.Contains(action))
+            if (this.commitCallbackList == null) this.commitCallbackList = new List<Action<EntityContext, int>>(5);
+            if (!this.commitCallbackList.Contains(action))
             {
-                this.CommitCallbackList.Add(action);
+                this.commitCallbackList.Add(action);
             }
         }
-        
+
         /// <summary>
         /// 移除commit or SaveChanges 成功之后执行action
         /// </summary>
@@ -217,7 +274,8 @@ namespace Afx.Data.Entity
         {
             bool result = false;
             if (action == null) throw new ArgumentNullException("action");
-            result = this.CommitCallbackList.Remove(action);
+            if (this.commitCallbackList == null) return true;
+            result = this.commitCallbackList.Remove(action);
 
             return result;
         }
@@ -228,17 +286,23 @@ namespace Afx.Data.Entity
         public virtual void ClearCommitCallback()
         {
             this.saveChangeCount = 0;
-            this.CommitCallbackList.Clear();
+            if (this.commitCallbackList != null) this.commitCallbackList.Clear();
+#if !NET40
+            if (this.commitCallbackAsyncList != null) this.commitCallbackAsyncList.Clear();
+#endif
         }
 
         private void OnCommitCallback()
         {
-            foreach (var action in this.CommitCallbackList)
+            if (this.commitCallbackList != null)
             {
-                try { action(this, this.saveChangeCount); }
-                catch (Exception ex)
+                foreach (var action in this.commitCallbackList)
                 {
-                    CommitCallbackError?.Invoke(ex);
+                    try { action(this, this.saveChangeCount); }
+                    catch (Exception ex)
+                    {
+                        CommitCallbackError?.Invoke(ex);
+                    }
                 }
             }
             this.ClearCommitCallback();
@@ -256,6 +320,7 @@ namespace Afx.Data.Entity
             if (!this.IsTransaction)
             {
                 this.saveChangeCount = count;
+                this.OnCommitCallbackAsync().Wait();
                 this.OnCommitCallback();
             }
             else
@@ -278,6 +343,7 @@ namespace Afx.Data.Entity
             if (!this.IsTransaction)
             {
                 this.saveChangeCount = count;
+                await this.OnCommitCallbackAsync();
                 this.OnCommitCallback();
             }
             else
@@ -312,6 +378,9 @@ namespace Afx.Data.Entity
             if (!this.IsTransaction)
             {
                 this.saveChangeCount = count;
+#if !NET40
+                this.OnCommitCallbackAsync().Wait();
+#endif
                 this.OnCommitCallback();
             }
             else
@@ -333,6 +402,7 @@ namespace Afx.Data.Entity
             if (!this.IsTransaction)
             {
                 this.saveChangeCount = count;
+                await this.OnCommitCallbackAsync();
                 this.OnCommitCallback();
             }
             else
