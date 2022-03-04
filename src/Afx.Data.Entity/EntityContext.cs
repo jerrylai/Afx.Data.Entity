@@ -126,11 +126,18 @@ namespace Afx.Data.Entity
         /// <summary>
         /// 提交事务
         /// </summary>
+#if !NET40
+        public virtual async Task Commit()
+#else
         public virtual void Commit()
+#endif
         {
             if (this.IsTransaction)
             {
                 this.Database.CurrentTransaction.Commit();
+#if !NET40
+               await this.OnCommitCallbackAsync();
+#endif
                 this.OnCommitCallback();
             }
         }
