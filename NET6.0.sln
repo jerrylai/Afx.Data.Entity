@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Afx.Data.Entity", "NETStandard2.1\Afx.Data.Entity\Afx.Data.Entity.csproj", "{7AFA9DCF-2534-434E-8E19-A5EA2E0DD99C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Afx.Data.Entity", "NET6.0\Afx.Data.Entity\Afx.Data.Entity.csproj", "{7AFA9DCF-2534-434E-8E19-A5EA2E0DD99C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
